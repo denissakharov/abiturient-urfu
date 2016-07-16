@@ -2,24 +2,6 @@ class User < ApplicationRecord
   has_many :statements
 
   def self.update_statements
-    statements = get_statements
-    statements.each do |statement|
-      user = User.find_or_create_by(name: statement[:user_name], number: statement[:number])
-      Statement.find_or_create_by(
-        status: statement[:status],
-        specialty: statement[:specialty],
-        educational_program: statement[:educational_program],
-        study_mode: statement[:study_mode],
-        basis: statement[:basis],
-        points: statement[:points],
-        user: user
-      )
-    end
-  end
-
-  private
-
-  def self.get_statements
     time = Time.now
     domain = 'http://urfu.ru'
     path = '/ru/alpha/full'
@@ -81,18 +63,31 @@ class User < ApplicationRecord
           }
         end
       end
+      unblank_statements = []
+      statements.each do |i|
+        unblank_statements << i unless i[:points] == 0
+      end
+      puts statements.length.to_s + ' заявлений в списках'
+      puts 'из них ' + unblank_statements.length.to_s + ' с баллами'
+      puts 'Выполнено за ' + (Time.now - time).to_s + ' сек.'
+      unblank_statements.each do |statement|
+        user = User.find_or_create_by(name: statement[:user_name], number: statement[:number])
+        Statement.find_or_create_by(
+          status: statement[:status],
+          specialty: statement[:specialty],
+          educational_program: statement[:educational_program],
+          study_mode: statement[:study_mode],
+          basis: statement[:basis],
+          points: statement[:points],
+          user: user
+        )
+      end
+      statements = []
+      unblank_statements = []
       puts 'еще одна страница обработана'
     end
 
-    unblank_statements = []
-    statements.each do |i|
-      unblank_statements << i unless i[:points] == 0
-    end
 
-    puts statements.length.to_s + ' заявлений в списках'
-    puts 'из них ' + unblank_statements.length.to_s + ' с баллами'
-    puts 'Выполнено за ' + (Time.now - time).to_s + ' сек.'
 
-    unblank_statements
   end
 end
