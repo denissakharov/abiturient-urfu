@@ -11,9 +11,9 @@ class User < ApplicationRecord
     page.search('.urfu-admission-menu-letters .item a').each do |item|
       links << domain + item.attributes['href'].text.strip
     end
-    statements = []
     links.each do |link|
       page = @agent.get(link)
+      statements = []
       page.search('tr[valign="top"]').each do |statement|
         if statement.search('td').length == 14
           statements << {
@@ -80,9 +80,8 @@ class User < ApplicationRecord
           user: user
         )
       end
-      statements = []
-      unblank_statements = []
       puts 'еще одна страница обработана'
+      sleep 20
     end
   end
 end
