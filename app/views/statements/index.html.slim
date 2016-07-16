@@ -1,0 +1,12 @@
+table
+  - @statements.each_with_index do |statement, index|
+    tr
+      td= index + 1
+      td= statement.user[:name]
+      td= statement.user[:number]
+      td= statement[:status]
+      td= statement[:specialty]
+      td= statement[:educational_program]
+      td= statement[:study_mode]
+      td= statement[:basis]
+      td= statement[:points]

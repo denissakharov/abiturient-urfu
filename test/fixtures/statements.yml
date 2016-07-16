@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  specialty: MyString
+  educational_program: MyString
+  study_mode: MyString
+  basis: MyString
+  points: 1
+
+two:
+  status: MyString
+  specialty: MyString
+  educational_program: MyString
+  study_mode: MyString
+  basis: MyString
+  points: 1
