@@ -1,2 +1,4 @@
-- @users.each do |user|
-  p= link_to user.name, user_path(user.number)
+.container
+  .row
+    - @users.each do |user|
+      h3.fio= link_to user.name, user_path(user.number)

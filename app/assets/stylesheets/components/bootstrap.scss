@@ -1,0 +1,33 @@
+h3.fio {
+  text-align: center;
+}
+.navbar-brand > img {
+  height: 23px;
+}
+.form-group {
+  position: absolute;
+  right: 50%;
+  left: 50%;
+
+  display: block;
+
+  width: 500px;
+  margin: 0 auto !important;
+}
+.navbar-form {
+  text-align: center;
+  input.form-control {
+    float: left !important;
+
+    width: 430px;
+
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  button.btn.btn-default {
+    float: left;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

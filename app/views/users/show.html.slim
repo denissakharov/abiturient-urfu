@@ -1,22 +1,27 @@
-h1= @user.number
-h2= @user.name
+.container
+  h3.fio= "#{@user.name} (##{@user.number})"
+  h2=
 
-- @statements.each do |statement|
-  table
-    tr
-      th Состояние
-      th Направление (специальность)
-      th Образовательная/магистерская программа (институт/филиал)
-      th Форма обучения
-      th Бюджетная (контрактная) основа
-      th Сумма конкурсных баллов
-    tr
-      td= statement.status
-      td= statement.specialty
-      td= statement.educational_program
-      td= statement.study_mode
-      td= statement.basis
-      td= statement.points
-  h3= " Минимальное колличество баллов на этой специальности #{statement.min}, максимальное: #{statement.max}"
-  h3= "#{statement.people_by} человек подали заявки сюда же. Вы на #{statement.my_raiting} месте"
-  h2= link_to "Смотреть всех", statements_path(study_mode: statement.study_mode, basis: statement.basis, educational_program: statement.educational_program)
+  - @statements.each do |statement|
+    .panel.panel-default
+      table.table
+        tr
+          th Состояние
+          th Направление (специальность)
+          th Образовательная/магистерская программа (институт/филиал)
+          th Форма обучения
+          th Бюджетная (контрактная) основа
+          th Сумма конкурсных баллов
+        tr
+          td= statement.status
+          td= statement.specialty
+          td= statement.educational_program
+          td= statement.study_mode
+          td= statement.basis
+          td= statement.points
+      .panel-footer
+        p= " Минимально набранное колличество баллов на этой специальности - #{statement.min}, максимальное - #{statement.max}"
+        p
+          = "#{statement.people_by} человек подали заявки сюда же. Вы на #{statement.my_raiting} месте ("
+          = link_to "cмотреть всех", statements_path(study_mode: statement.study_mode, basis: statement.basis, educational_program: statement.educational_program)
+          = ')'

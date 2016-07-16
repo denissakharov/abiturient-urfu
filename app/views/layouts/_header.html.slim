@@ -1,0 +1,9 @@
+nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      = link_to image_tag('http://urfu.ru/typo3conf/ext/urfu/Resources/Public/images/header/logo1.png'), 'http://urfu.ru/ru/alpha/full/', class: 'navbar-brand', target: '_blank'
+      = link_to 'Списки поступающих', root_path, class: 'navbar-brand'
+    form.navbar-form.navbar-center role='search'
+      .form-group
+        input type="text" class="form-control" placeholder="ФИО(полностью)"
+        button type="submit" class="btn btn-default" Найти
