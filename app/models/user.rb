@@ -5,14 +5,12 @@ class User < ApplicationRecord
     time = Time.now
     domain = 'http://urfu.ru'
     path = '/ru/alpha/full'
-
     @agent = Mechanize.new
     page = @agent.get(domain + path)
     links = []
     page.search('.urfu-admission-menu-letters .item a').each do |item|
       links << domain + item.attributes['href'].text.strip
     end
-
     statements = []
     links.each do |link|
       page = @agent.get(link)
@@ -86,8 +84,5 @@ class User < ApplicationRecord
       unblank_statements = []
       puts 'еще одна страница обработана'
     end
-
-
-
   end
 end

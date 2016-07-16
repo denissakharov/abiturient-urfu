@@ -1,4 +1,6 @@
 .container
   .row
+    - if @users.length >= 5
+      h2 Самые умные
     - @users.each do |user|
       h3.fio= link_to user.name, user_path(user.number)
