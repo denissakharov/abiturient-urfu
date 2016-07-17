@@ -1,8 +1,6 @@
 .container
   .row
     - if @users.nil? || @users.empty?
-      h1.light Таких людей тут нет
-    - elsif @users.length >= 5
-      h2 Самые умные
+      h1.light Самое время найти себя
     - @users.each do |user|
       h3.fio= link_to user.name, user_path(user.number)

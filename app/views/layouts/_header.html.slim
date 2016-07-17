@@ -4,7 +4,7 @@ nav.navbar.navbar-default
       = link_to image_tag('http://urfu.ru/typo3conf/ext/urfu/Resources/Public/images/header/logo1.png'), 'http://urfu.ru/ru/alpha/full/', class: 'navbar-brand', target: '_blank'
       = link_to 'Списки поступающих', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
-      = form_for :search, url: root_path, method: 'get', html: {class: 'navbar-form navbar-center', role: 'search'} do |f|
+      = form_tag root_path, method: 'get', role: 'search', class: 'navbar-form navbar-center' do |f|
         .form-group
-          = f.text_field :name, type: "text", class: "form-control", placeholder: "ФИО(полностью)"
-          = f.button 'Найти', type: "submit", class: "btn btn-default"
+          = text_field_tag :query, params[:query], type: "text", class: "form-control", placeholder: "ФИО или регистрационный номер"
+          = button_tag 'Найти', type: "submit", class: "btn btn-default"

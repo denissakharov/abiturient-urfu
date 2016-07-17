@@ -1,13 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = if params[:search].nil?
-               User.joins(:statements)
-                   .select('statements.user_id', 'users.*')
-                   .where('statements.points >= 290')
-                   .group('users.id, statements.user_id')
-             else
-               User.where(name: params[:search][:name])
-             end
+    @users = User.search_everywhere(params[:query])
   end
 
   def show
