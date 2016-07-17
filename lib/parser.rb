@@ -29,51 +29,29 @@ module Parser
   end
 
   def row_to_hash(row)
-    if row.search('td').length == 14
-      {
-        user_name:  @last_name = row.at('td').text.strip,
-        number: @last_id = row.search('td')[1].text.strip.to_i,
-        status: row.search('td')[2].text.strip,
-        specialty: row.search('td')[5].text.strip,
-        educational_program: row.search('td')[6].text.strip,
-        study_mode: row.search('td')[7].text.strip,
-        basis: @last_basic = row.search('td')[8].text.strip,
-        points: row.search('td')[-1].text.strip.to_i
-      }
-    elsif row.search('td').length == 12
-      {
-        user_name:  @last_name,
-        number: @last_id,
-        status: row.search('td')[0].text.strip,
-        specialty: row.search('td')[3].text.strip,
-        educational_program: row.search('td')[4].text.strip,
-        study_mode: row.search('td')[5].text.strip,
-        basis: @last_basic = row.search('td')[6].text.strip,
-        points: row.search('td')[-1].text.strip.to_i
-      }
-    elsif row.search('td').length < 12 && row.search('td')[6].text.strip != 'бюджетная основа' && row.search('td')[6].text.strip != 'контрактная основа'
-      {
-        user_name:  @last_name,
-        number: @last_id,
-        status: row.search('td')[0].text.strip,
-        specialty: row.search('td')[3].text.strip,
-        educational_program: row.search('td')[4].text.strip,
-        study_mode: row.search('td')[5].text.strip,
-        basis: @last_basic,
-        points: row.search('td')[-1].text.strip.to_i
-      }
+    row_length = row.search('td').length
+    index_diff = (14 - row_length) > 2 ? 2 : 0
+    if row_length == 14
+      @last_name = row.at('td').text.strip
+      @last_id = row.search('td')[1].text.strip.to_i
+      @last_basic = row.search('td')[8 - index_diff].text.strip
+    elsif row_length == 12
+      @last_basic = row.search('td')[8 - index_diff].text.strip
+    elsif row_length < 12 && row.search('td')[6].text.strip != 'бюджетная основа' && row.search('td')[6].text.strip != 'контрактная основа'
+      'break'
     else
-      {
-        user_name:  @last_name,
-        number: @last_id,
-        status: row.search('td')[0].text.strip,
-        specialty: row.search('td')[3].text.strip,
-        educational_program: row.search('td')[4].text.strip,
-        study_mode: row.search('td')[5].text.strip,
-        basis: row.search('td')[6].text.strip,
-        points: row.search('td')[-1].text.strip.to_i
-      }
+      @last_basic = row.search('td')[8 - index_diff].text.strip
     end
+    {
+      user_name: @last_name,
+      number: @last_id,
+      basis: @last_basic,
+      status: row.search('td')[2 - index_diff].text.strip,
+      specialty: row.search('td')[5 - index_diff].text.strip,
+      educational_program: row.search('td')[6 - index_diff].text.strip,
+      study_mode: row.search('td')[7 - index_diff].text.strip,
+      points: row.search('td')[-1].text.strip.to_i
+    }
   end
 
   def statement_empty?(statement)
