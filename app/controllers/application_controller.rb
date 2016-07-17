@@ -1,3 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
+  def update_monitor
+    if Statement.maximum(:created_at) + 1.minute >= Time.now || Statement.minimum(:created_at) <= Time.now - 1.day
+      redirect_to updating_path
+    end
+  end
 end
