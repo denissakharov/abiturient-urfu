@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>UrfuApplicantsRaiting</title>
+    <title>Списки поступающих | УрФУ</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,6 +10,9 @@
 
   <body>
     <%= render partial: 'layouts/header' %>
+    <%= render partial: 'layouts/yandex_mertika' %>
     <%= yield %>
+    <%= render partial: 'layouts/footer' %>
+    <%= render partial: 'layouts/github_ribbons' %>
   </body>
 </html>
