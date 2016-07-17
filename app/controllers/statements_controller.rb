@@ -4,12 +4,12 @@ class StatementsController < ApplicationController
       @statements = Statement.where(study_mode: params[:study_mode],
                                     basis: params[:basis],
                                     educational_program: params[:educational_program])
-                                    .order('points DESC')
+                             .order('points DESC')
     end
   end
 
   def update
-    User.update_statements
+    Statement.get_statements
     render text: 'OK'
   end
 end

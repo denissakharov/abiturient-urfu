@@ -1,4 +1,6 @@
 class Statement < ApplicationRecord
+  extend Parser
+
   belongs_to :user
 
   def max
