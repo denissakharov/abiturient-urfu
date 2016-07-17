@@ -30,7 +30,7 @@ module Parser
 
   def row_to_hash(row)
     row_length = row.search('td').length
-    index_diff = (14 - row_length) > 2 ? 2 : 0
+    index_diff = (14 - row_length) >= 2 ? 2 : 0
     if row_length == 14
       @last_name = row.at('td').text.strip
       @last_id = row.search('td')[1].text.strip.to_i
