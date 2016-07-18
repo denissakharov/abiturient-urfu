@@ -47,6 +47,7 @@ module Parser
       number: @last_id,
       basis: @last_basic,
       status: row.search('td')[2 - index_diff].text.strip,
+      edu_doc: row.search('td')[4 - index_diff].text.strip,
       specialty: row.search('td')[5 - index_diff].text.strip,
       educational_program: row.search('td')[6 - index_diff].text.strip,
       study_mode: row.search('td')[7 - index_diff].text.strip,
@@ -70,6 +71,7 @@ module Parser
       end
       Statement.find_or_create_by(
         status: statement[:status],
+        edu_doc: statement[:edu_doc],
         specialty: statement[:specialty],
         educational_program: statement[:educational_program],
         study_mode: statement[:study_mode],
