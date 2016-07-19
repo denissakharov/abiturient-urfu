@@ -11,9 +11,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    if Statement.maximum(:created_at) + 1.minute >= Time.now || Statement.minimum(:created_at) <= Time.now - 1.day
-      timer = 20 - ((Statement.maximum(:created_at) - Statement.minimum(:created_at)) / 60).round
-      @minutes = timer < 0 ? 0 : timer
+    if Statement.all.empty? || Statement.maximum(:created_at) >= Time.now - 1.minute || Statement.minimum(:created_at) <= Time.now - 1.day
+      timer = 20 - ((Statement.maximum(:created_at) - Statement.minimum(:created_at)) / 60).round unless Statement.all.empty?
+      @minutes = if timer.nil?
+                   20
+                 elsif timer < 0
+                   1
+                 else
+                   timer
+                 end
     else
       redirect_to root_path
     end

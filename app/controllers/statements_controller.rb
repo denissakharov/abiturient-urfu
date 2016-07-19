@@ -11,7 +11,7 @@ class StatementsController < ApplicationController
   end
 
   def update
-    if Statement.minimum(:created_at) <= Time.now - 1.day
+    if Statement.all.empty? || Statement.minimum(:created_at) <= Time.now - 1.day
       User.delete_all
       Statement.delete_all
       Statement.get_statements
