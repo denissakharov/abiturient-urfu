@@ -7,6 +7,8 @@ class StatementsController < ApplicationController
                                     basis: params[:basis],
                                     educational_program: params[:educational_program])
                              .order('points DESC')
+      else
+        @statements = Statement.limit(100)
     end
   end
 

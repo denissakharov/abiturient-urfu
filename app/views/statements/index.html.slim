@@ -11,15 +11,5 @@
       th Форма обучения
       th Бюджетная (контрактная) основа
       th Сумма конкурсных баллов
-    - @statements.each_with_index do |statement, index|
-      tr
-        td= index + 1
-        td= link_to statement.user[:name], user_path(statement.user[:number])
-        td= statement.user[:number]
-        td= statement[:status]
-        td= statement[:edu_doc]
-        td= statement[:specialty]
-        td= statement[:educational_program]
-        td= statement[:study_mode]
-        td= statement[:basis]
-        td= statement[:points]
+    - @index = 0
+    = render @statements
