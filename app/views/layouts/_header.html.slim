@@ -7,4 +7,3 @@ nav.navbar.navbar-default
       = form_tag root_path, method: 'get', role: 'search', class: 'navbar-form navbar-center' do |f|
         .form-group
           = text_field_tag :query, params[:query], type: "text", class: "form-control", placeholder: "ФИО или регистрационный номер без ноля вначале"
-          = button_tag 'Найти', type: "submit", class: "btn btn-default"
