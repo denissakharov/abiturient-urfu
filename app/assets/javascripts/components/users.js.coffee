@@ -1,6 +1,8 @@
 @Users = React.createClass
   getInitialState: ->
-    {users: []}
+    users: @props.users
+  getDefaultProps: ->
+    users: []
   handleInput: (e) ->
     self = @
     $.get '/', query: e.target.value, (result) ->
