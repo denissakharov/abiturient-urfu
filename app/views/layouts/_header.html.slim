@@ -1,9 +1,0 @@
-nav.navbar.navbar-default
-  .container
-    .navbar-header
-      = link_to image_tag('http://urfu.ru/typo3conf/ext/urfu/Resources/Public/images/header/logo1.png'), 'http://urfu.ru/ru/alpha/full/', class: 'navbar-brand', target: '_blank'
-      = link_to 'Списки поступающих', root_path, class: 'navbar-brand'
-    .collapse.navbar-collapse
-      = form_tag root_path, method: 'get', role: 'search', class: 'navbar-form navbar-center' do |f|
-        .form-group
-          = text_field_tag :query, params[:query], type: "text", class: "form-control", placeholder: "ФИО или регистрационный номер без ноля вначале"

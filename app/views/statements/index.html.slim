@@ -1,15 +1,1 @@
-.container
-  table.table.table-striped
-    tr
-      th #
-      th Фамилия Имя Отчество
-      th Рег #
-      th Состояние
-      th Док. об образовании
-      th Направление (специальность)
-      th Образовательная/магистерская программа (институт/филиал)
-      th Форма обучения
-      th Бюджетная (контрактная) основа
-      th Сумма конкурсных баллов
-    - @index = 0
-    = render @statements
+= react_component 'Statements', statements: @statements, users: @users

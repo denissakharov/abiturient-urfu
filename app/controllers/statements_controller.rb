@@ -2,14 +2,16 @@ class StatementsController < ApplicationController
   before_action :update_monitor, only: :index
 
   def index
-    unless params[:study_mode].nil?
+    if params[:study_mode].nil?
+      @statements = Statement.order('points DESC').limit(100)
+    else
       @statements = Statement.where(study_mode: params[:study_mode],
                                     basis: params[:basis],
                                     educational_program: params[:educational_program])
                              .order('points DESC')
-      else
-        @statements = Statement.order('points DESC').limit(100)
-    end
+      end
+    @users = []
+    @statements.map { |s| @users << s.user }
   end
 
   def update
