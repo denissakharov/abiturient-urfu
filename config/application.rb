@@ -9,8 +9,12 @@ Bundler.require(*Rails.groups)
 module UrfuApplicantsRaiting
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/lib)
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+
+    # config.react.server_renderer_pool_size  ||= 1
+    # config.react.server_renderer_timeout    ||= 20
+    # config.react.server_renderer = React::ServerRendering::SprocketsRenderer
+    # config.react.server_renderer_options = {
+    #   files: ['react-server.js', 'components.js']
+    # }
   end
 end
