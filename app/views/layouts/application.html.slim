@@ -1,14 +1,15 @@
 doctype html
 html
   head
-    title Списки поступающих | УрФУ
+    title= full_title(yield(:title))
+    meta[name="description" content= yield(:description)]
     meta[name="yandex-verification" content="68fa711cf4489f19"]
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = react_component 'Header', prerender: true
+    = react_component 'Header'
     = render partial: 'layouts/yandex_mertika'
     = yield
-    = react_component 'Footer', prerender: true
+    = react_component 'Footer'
     = render partial: 'layouts/github_ribbons'

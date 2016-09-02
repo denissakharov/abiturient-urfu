@@ -1,1 +1,4 @@
+= content_for :title, "#{@statements.first.educational_program} - #{@statements.first.study_mode} форма обучения"
+= content_for :description, "Рейтинговый список по направлению #{@statements.first.specialty}, образовательная программа: #{@statements.first.educational_program}. #{@statements.first.study_mode} форма обучения, #{@statements.first.basis}."
+
 = react_component('Statements', {statements: @statements, users: @users}, prerender: true)
