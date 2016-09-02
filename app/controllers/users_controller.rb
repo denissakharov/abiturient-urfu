@@ -11,7 +11,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_number(params[:number])
-    @statements = @user.statements
+    if @user.nil?
+      render file: 'public/404', status: 404, formats: [:html]
+    else
+      @statements = @user.statements
+    end
   end
 
   def update
