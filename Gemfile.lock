@@ -66,6 +66,7 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
+    dynamic_sitemaps (2.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
@@ -235,6 +236,7 @@ DEPENDENCIES
   byebug
   codeclimate-test-reporter
   coffee-rails (~> 4.2)
+  dynamic_sitemaps
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

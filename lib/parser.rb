@@ -1,4 +1,13 @@
 module Parser
+  def get_statements
+    links = get_links
+    links.each do |link|
+      s = statements_by_page(link)
+      save_statements(s)
+    end
+    system 'rails sitemap:generate'
+  end
+
   def get_links
     domain = 'http://urfu.ru'
     path = '/ru/alpha/full'
@@ -18,14 +27,6 @@ module Parser
       statements << statement unless statement_empty?(statement)
     end
     statements
-  end
-
-  def get_statements
-    links = get_links
-    links.each do |link|
-      s = statements_by_page(link)
-      save_statements(s)
-    end
   end
 
   def row_to_hash(row)
