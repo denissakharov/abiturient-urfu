@@ -5,7 +5,6 @@ module Parser
       s = statements_by_page(link)
       save_statements(s)
     end
-    system 'rails sitemap:generate'
   end
 
   def get_links
