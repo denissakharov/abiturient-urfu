@@ -17,24 +17,13 @@ describe Parser do
 
   describe 'statement' do
     it 'should be empty' do
-      statement = { user_name: 'Абаимов Владислав Владимирович', number: 81_712, status: 'Рейтинг', edu_doc: 'оригинал', specialty: '38.03.01 Экономика (Бакалавриат)', educational_program: 'Прикладная экономика и финансы (ВШЭМ)', study_mode: 'Заочная', basis: 'контрактная основа', points: 0 }
+      statement = { name: 'Абаимов Владислав Владимирович', number: 81_712, status: 'Рейтинг', edu_doc: 'оригинал', specialty: '38.03.01 Экономика (Бакалавриат)', educational_program: 'Прикладная экономика и финансы (ВШЭМ)', study_mode: 'Заочная', basis: 'контрактная основа', points: 0 }
       expect(extended_class.statement_empty?(statement)).to eq(true)
     end
 
     it 'should be not empty' do
-      statement = { user_name: 'Абаимов Владислав Владимирович', number: 81_712, edu_doc: 'оригинал', status: 'Рейтинг', specialty: '38.03.01 Экономика (Бакалавриат)', educational_program: 'Прикладная экономика и финансы (ВШЭМ)', study_mode: 'Заочная', basis: 'контрактная основа', points: 236 }
+      statement = { name: 'Абаимов Владислав Владимирович', number: 81_712, edu_doc: 'оригинал', status: 'Рейтинг', specialty: '38.03.01 Экономика (Бакалавриат)', educational_program: 'Прикладная экономика и финансы (ВШЭМ)', study_mode: 'Заочная', basis: 'контрактная основа', points: 236 }
       expect(extended_class.statement_empty?(statement)).to eq(false)
-    end
-
-    it 'should be equal first statement from first page' do
-      link = extended_class.get_links.first
-      statements = extended_class.statements_by_page(link)
-      expect(statements.first).to eq(user_name: 'Абаимов Владислав Владимирович', number: 81_712, edu_doc: 'оригинал', status: 'Рейтинг', specialty: '38.03.01 Экономика (Бакалавриат)', educational_program: 'Прикладная экономика и финансы (ВШЭМ)', study_mode: 'Заочная', basis: 'контрактная основа', points: 236)
-    end
-
-    it 'should be save' do
-      statement = { user_name: 'Абаимов Владислав Владимирович', number: 81_712, edu_doc: 'оригинал', status: 'Рейтинг', specialty: '38.03.01 Экономика (Бакалавриат)', educational_program: 'Прикладная экономика и финансы (ВШЭМ)', study_mode: 'Заочная', basis: 'контрактная основа', points: 236 }
-      extended_class.save_statements([statement, statement])
     end
   end
 end

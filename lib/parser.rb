@@ -2,8 +2,7 @@ module Parser
   def get_statements
     links = get_links
     links.each do |link|
-      s = statements_by_page(link)
-      save_statements(s)
+      statements_by_page(link)
     end
   end
 
@@ -23,9 +22,10 @@ module Parser
     statements = []
     page.search('tr[valign="top"]').each do |row|
       statement = row_to_hash(row)
-      statements << statement unless statement_empty?(statement)
+      statements << Statement.new(statement) unless statement_empty?(statement)
     end
-    statements
+    Statement.import statements
+    puts 'ОП! Готово!'
   end
 
   def row_to_hash(row)
@@ -43,7 +43,7 @@ module Parser
       @last_basic = row.search('td')[8 - index_diff].text.strip
     end
     {
-      user_name: @last_name,
+      name: @last_name,
       number: @last_id,
       basis: @last_basic,
       status: row.search('td')[2 - index_diff].text.strip,
@@ -57,28 +57,5 @@ module Parser
 
   def statement_empty?(statement)
     statement[:points] == 0 ? true : false
-  end
-
-  def save_statements(statements)
-    @user = User.new
-    statements.each do |statement|
-      if @user.nil?
-        @user = User.find_or_create_by(name: statement[:user_name], number: statement[:number])
-      elsif @user.number == statement[:number]
-        @user
-      else
-        @user = User.find_or_create_by(name: statement[:user_name], number: statement[:number])
-      end
-      Statement.find_or_create_by(
-        status: statement[:status],
-        edu_doc: statement[:edu_doc],
-        specialty: statement[:specialty],
-        educational_program: statement[:educational_program],
-        study_mode: statement[:study_mode],
-        basis: statement[:basis],
-        points: statement[:points],
-        user: @user
-      )
-    end
   end
 end

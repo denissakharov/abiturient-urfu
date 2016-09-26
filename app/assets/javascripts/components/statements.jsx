@@ -3,21 +3,6 @@ class Statements extends React.Component {
     super(props);
     this.state = this.props
   }
-  findUser (e) {
-    var find, i;
-    return find = ((function() {
-      var j, len, ref, results;
-      ref = this.props.users;
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        i = ref[j];
-        if (i.id === e) {
-          results.push(i);
-        }
-      }
-      return results;
-    }).call(this))[0];
-  }
   render () {
     return(
       <div className='container'>
@@ -41,7 +26,6 @@ class Statements extends React.Component {
                   <Statement
                     key={statement.id}
                     statement={statement}
-                    user={ this.findUser(statement.user_id)}
                     lala={index + 1}
                   />
                 )

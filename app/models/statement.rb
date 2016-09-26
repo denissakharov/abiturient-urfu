@@ -1,6 +1,9 @@
 class Statement < ApplicationRecord
   extend Parser
 
+  include PgSearch
+  pg_search_scope :search_everywhere, against: [:name, :number]
+
   belongs_to :user
 
   def max
@@ -12,7 +15,7 @@ class Statement < ApplicationRecord
   end
 
   def people_by
-    Statement.where(study_mode: study_mode, basis: basis, educational_program: educational_program).uniq.pluck(:user_id).length
+    Statement.where(study_mode: study_mode, basis: basis, educational_program: educational_program).uniq.pluck(:number).length
   end
 
   def my_raiting

@@ -31,3 +31,4 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'pg_search'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'react-rails'
+gem 'activerecord-import', '~> 0.15.0'

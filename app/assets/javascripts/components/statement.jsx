@@ -4,9 +4,9 @@ class Statement extends React.Component {
       <tr>
         <td>{this.props.lala}</td>
         <td>
-          <a href={this.props.user.number}>{this.props.user.name}</a>
+          <a href={this.props.statement.number}>{this.props.statement.name}</a>
         </td>
-        <td>{this.props.user.number}</td>
+        <td>{this.props.statement.number}</td>
         <td>{this.props.statement.status}</td>
         <td>{this.props.statement.edu_doc}</td>
         <td>{this.props.statement.specialty}</td>
