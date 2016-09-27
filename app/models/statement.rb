@@ -7,18 +7,30 @@ class Statement < ApplicationRecord
   belongs_to :user
 
   def max
-    Statement.where(study_mode: study_mode, basis: basis, educational_program: educational_program).maximum(:points)
+    statements = Statement.where(study_mode: study_mode,
+                                 basis: basis,
+                                 educational_program: educational_program)
+    statements.maximum(:points)
   end
 
   def min
-    Statement.where(study_mode: study_mode, basis: basis, educational_program: educational_program).minimum(:points)
+    statements = Statement.where(study_mode: study_mode,
+                                 basis: basis,
+                                 educational_program: educational_program)
+    statements.minimum(:points)
   end
 
   def people_by
-    Statement.where(study_mode: study_mode, basis: basis, educational_program: educational_program).uniq.pluck(:number).length
+    statements = Statement.where(study_mode: study_mode,
+                                 basis: basis,
+                                 educational_program: educational_program)
+    statements.uniq.pluck(:number).length
   end
 
   def my_raiting
-    Statement.where(study_mode: study_mode, basis: basis, educational_program: educational_program).order('points DESC').map(&:id).index(id) + 1
+    statements = Statement.where(study_mode: study_mode,
+                                 basis: basis,
+                                 educational_program: educational_program)
+    statements.order('points DESC').map(&:number).index(number) + 1
   end
 end

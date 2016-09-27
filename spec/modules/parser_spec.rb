@@ -17,12 +17,24 @@ describe Parser do
 
   describe 'statement' do
     it 'should be empty' do
-      statement = { name: 'Абаимов Владислав Владимирович', number: 81_712, status: 'Рейтинг', edu_doc: 'оригинал', specialty: '38.03.01 Экономика (Бакалавриат)', educational_program: 'Прикладная экономика и финансы (ВШЭМ)', study_mode: 'Заочная', basis: 'контрактная основа', points: 0 }
+      statement = { name: 'Абаимов Владислав Владимирович',
+                    number: 81_712, status: 'Рейтинг',
+                    edu_doc: 'оригинал',
+                    specialty: '38.03.01 Экономика (Бакалавриат)',
+                    educational_program: 'Прикладная экономика и финансы (ВШЭМ)',
+                    study_mode: 'Заочная', basis: 'контрактная основа',
+                    points: 0 }
       expect(extended_class.statement_empty?(statement)).to eq(true)
     end
 
     it 'should be not empty' do
-      statement = { name: 'Абаимов Владислав Владимирович', number: 81_712, edu_doc: 'оригинал', status: 'Рейтинг', specialty: '38.03.01 Экономика (Бакалавриат)', educational_program: 'Прикладная экономика и финансы (ВШЭМ)', study_mode: 'Заочная', basis: 'контрактная основа', points: 236 }
+      statement = { name: 'Абаимов Владислав Владимирович',
+                    number: 81_712, edu_doc: 'оригинал',
+                    status: 'Рейтинг',
+                    specialty: '38.03.01 Экономика (Бакалавриат)',
+                    educational_program: 'Прикладная экономика и финансы (ВШЭМ)',
+                    study_mode: 'Заочная', basis: 'контрактная основа',
+                    points: 236 }
       expect(extended_class.statement_empty?(statement)).to eq(false)
     end
   end

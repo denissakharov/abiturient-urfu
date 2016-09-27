@@ -1,8 +1,8 @@
 doctype html
 html
   head
-    title= full_title(yield(:title))
-    meta[name="description" content= yield(:description)]
+    title= full_title(@title)
+    meta[name="description" content= @description]
     meta[name="google-site-verification" content="xShCyG5zvTqkYzbv9IqkSrCUyGwjLf-j4ADaC-LTXmM"]
     meta[name="yandex-verification" content="68fa711cf4489f19"]
     = csrf_meta_tags
@@ -10,7 +10,8 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = react_component 'Header'
-    = render partial: 'layouts/yandex_mertika'
+    = react_component 'StatementsStatus'
     = yield
     = react_component 'Footer'
+    = render partial: 'layouts/yandex_mertika'
     = render partial: 'layouts/github_ribbons'

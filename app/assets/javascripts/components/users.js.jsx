@@ -6,10 +6,10 @@ class Users extends React.Component {
   }
   handleInput (event) {
     var self = this;
-    $.get( '/', { query: event.target.value }, result => {
+    $.getJSON( '/', { name: event.target.value }, result => {
       self.setState({users: result});
       self.props = {users: result}
-    }, 'json');
+    });
   }
   render () {
     return (

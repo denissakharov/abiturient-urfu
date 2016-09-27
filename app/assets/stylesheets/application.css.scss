@@ -20,7 +20,14 @@ h2, th, td, p{
   text-align: center;
 }
 h1.light {
-  text-align: center;
-
   color: #e7e7e7;
+  text-align: center;
+}
+
+.navbar {
+  margin-bottom: 0 !important;
+}
+
+.progress {
+  border-radius: 0 !important;
 }

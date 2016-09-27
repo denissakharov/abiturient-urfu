@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
-  before_action :update_monitor, only: [:index, :show]
-
   def index
-    @users = Statement.select(:name, :number).distinct.search_everywhere(params[:query]).reorder(:name).distinct
+    @users = Statement.select(:name, :number)
+    @users = @users.distinct.search_everywhere(search_params[:name])
+    @users = @users.reorder(:name).distinct
+
+    @description = 'Рейтинговые списки абитуриентов УрФУ. Бережно взятые с официального сайта и представленые в удобном виде. Сайт ежедневно обновляется с мая по сентябрь.'
+
     respond_to do |format|
-      format.html
       format.json { render json: @users }
+      format.html { render inline: "<%= react_component 'Users', users: @users %>", layout: 'application' }
     end
   end
 
@@ -15,21 +18,16 @@ class UsersController < ApplicationController
       render file: 'public/404', status: 404, formats: [:html]
     else
       @statements = Statement.where(number: params[:number])
+      @title = @user.name
+      @description = "#{@statements.first.study_mode} форма обучения, #{@statements.first.basis} по образовательной программе #{@statements.first.educational_program} с суммой конкурсных баллов #{@statements.first.points}"
+
+      render inline: "<%= react_component 'UserStatementList', statements: @statements %>", layout: 'application'
     end
   end
 
-  def update
-    if Statement.all.empty? || Statement.maximum(:created_at) >= Time.now - 1.minute || Statement.minimum(:created_at) <= Time.now - 1.day
-      timer = 5 - ((Statement.maximum(:created_at) - Statement.minimum(:created_at)) / 60).round unless Statement.all.empty?
-      @minutes = if timer.nil?
-                   5
-                 elsif timer < 0
-                   1
-                 else
-                   timer
-                 end
-    else
-      redirect_to root_path
-    end
+  private
+
+  def search_params
+    params.permit(:name)
   end
 end
