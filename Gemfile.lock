@@ -122,6 +122,7 @@ GEM
     pkg-config (1.1.7)
     puma (3.6.0)
     rack (2.0.1)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -249,6 +250,7 @@ DEPENDENCIES
   pg (~> 0.18)
   pg_search
   puma (~> 3.0)
+  rack-cors
   rails (~> 5.0.0)
   react-rails
   rspec-rails (~> 3.4)
@@ -263,4 +265,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.1
+   1.13.2
