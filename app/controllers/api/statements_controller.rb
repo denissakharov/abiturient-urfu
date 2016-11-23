@@ -27,24 +27,12 @@ module Api
       db_status = WorkingStatus.find_by_name('Update status')
       sc = WorkingStatus.find_by_name('Statements count')
 
-      @status = if  Time.now < last_update + 1.day && db_status.content == 'updated'
-                  {
-                    status: 'updated',
-                    statements: statements_quantity,
-                    users: users_quantity,
-                    last_update: last_update.strftime('%d.%m.%Y в %H:%M'),
-                    progress: 100
-                  }
-                elsif db_status.content == 'updating'
-                  {
-                    status: 'updating',
-                    progress: statements_quantity.to_f / sc.content.to_f * 100.0
-                  }
-                elsif db_status.content == 'updated'
-                  db_status.update_attributes(content: 'starting')
-                  sc.update_attributes(content: statements_quantity)
-                  { status: 'starting', progress: 100 }
-                end
+      @status = { status: 'updated',
+                  statements: statements_quantity,
+                  users: users_quantity,
+                  last_update: last_update.strftime('%d.%m.%Y в %H:%M'),
+                  progress: 100
+                }
 
       render json: @status
     end
