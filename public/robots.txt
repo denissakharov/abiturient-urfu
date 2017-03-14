@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
-Host: abiturient-urfu.herokuapp.com
-Sitemap: https://abiturient-urfu.herokuapp.com/sitemap.xml
+Host: abiturient-urfu.swiftteam.ru
+Sitemap: http://abiturient-urfu.swiftteam.ru/sitemap.xml
