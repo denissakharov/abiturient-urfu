@@ -7,7 +7,7 @@
   </url>
   <% Statement.select(:number).distinct.each do |statement| %>
     <url>
-      <loc>http://abiturient-urfu.herokuapp.com/<%= statement.number %></loc>
+      <loc>http://abiturient-urfu.swiftteam.ru/<%= statement.number %></loc>
       <changefreq>daily</changefreq>
       <priority>1.0</priority>
     </url>
